@@ -1,5 +1,5 @@
 let lastRender= 0;
-import { SPEED } from "./snake.js";
+import { SPEED, updateSnake, renderSnake } from "./snake.js";
 
 const board= document.getElementById('game-grid');
 
@@ -10,7 +10,6 @@ const runGame= (timeStamp) => {
     let timeToRender = (timeStamp - lastRender) / 1000;
     if (timeToRender < 1 / SPEED) return;
     lastRender= timeStamp;
-    console.log(timeStamp);
 
     updateGame();
     renderGame();
@@ -19,9 +18,10 @@ const runGame= (timeStamp) => {
 window.requestAnimationFrame(runGame);
 
 const updateGame= () => {
-
+    updateSnake();
 }
 
 const renderGame= () => {
-    // board.innerHTML = '';
+    board.innerHTML= '';
+    renderSnake(board);
 }

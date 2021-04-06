@@ -3,6 +3,7 @@ import { readInput } from './input.js';
 
 let snake= [{x: 11, y: 11}];
 let newSquare= false;
+let snakeScore= 0;
 
 
 export const updateSnake= () => {
@@ -45,8 +46,8 @@ const addSquares= () => {
     if (newSquare) {
         snake.push({...snake[snake.length - 1]});
         newSquare= false;
+        snakeScore += Math.floor(SPEED * snake.length / 2);
     }
-
 }
 
 export const headPosition= () => {
@@ -55,4 +56,8 @@ export const headPosition= () => {
 
 export const snakeIntersects= () => {
 return touchingSnake(snake[0], {ignoreHead: true});
+}
+
+export const getSnakeScore = () => {
+    return snakeScore;
 }

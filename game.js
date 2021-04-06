@@ -1,21 +1,23 @@
 let lastRender= 0;
-import { SPEED, updateSnake, renderSnake, snakeIntersects, headPosition } from "./snake.js";
+import { SPEED, updateSnake, renderSnake, snakeIntersects, headPosition, getSnakeScore } from "./snake.js";
 import { renderTarget, updateTarget } from "./target.js";
 
 const board= document.getElementById('game-grid');
 let gameOver= false;
+let timedScore= 0;
 
 
 const runGame= (timeStamp) => {
 
     if (gameOver) {
-        return alert('Game over!!');
+        let finalScore= timedScore + getSnakeScore();
+        return alert(`Game over, final score: ${finalScore}`);
     }
     window.requestAnimationFrame(runGame);
     let timeToRender = (timeStamp - lastRender) / 1000;
     if (timeToRender < 1 / SPEED) return;
     lastRender= timeStamp;
-
+    timedScore += 3;
     updateGame();
     renderGame();
 }

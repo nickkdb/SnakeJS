@@ -1,9 +1,10 @@
-import { touchingSnake } from "./snake.js";
+import { expandSnake, touchingSnake } from "./snake.js";
 
 let target= setTarget();
 
 export const updateTarget= () => {
     if (touchingSnake(target)) {
+        expandSnake();
         target= setTarget();
     }
 }

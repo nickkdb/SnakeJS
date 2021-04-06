@@ -18,7 +18,10 @@ export const renderTarget= (board) => {
 }
 
 function setTarget() {
-    let newPosition= randomPosition();
+     let newPosition;
+    while (newPosition == null || touchingSnake(newPosition)) {
+        newPosition= randomPosition();
+    }
     return newPosition;
 }
 

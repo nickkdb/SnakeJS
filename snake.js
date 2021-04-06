@@ -1,8 +1,8 @@
-export const SPEED = 3;
+export const SPEED = 11;
 import { readInput } from './input.js';
 
 let snake= [{x: 11, y: 11}];
-let newSquare= 0;
+let newSquare= false;
 
 
 export const updateSnake= () => {
@@ -26,8 +26,9 @@ export const renderSnake= (board) => {
     })
 }
 
-export const touchingSnake= (position) => {
+export const touchingSnake= (position, {ignoreHead = false} = {}) => {
     return snake.some((square, index) => {
+        if (ignoreHead && index === 0) return false;
         return isTouching(square, position);
     })
 }
@@ -37,13 +38,21 @@ const isTouching= (pos1, pos2) => {
 }
 
 export const expandSnake= () => {
-    newSquare ++;
+    newSquare= true;
 }
 
 const addSquares= () => {
-    if (newSquare > 0) {
+    if (newSquare) {
         snake.push({...snake[snake.length - 1]});
-        newSquare--;
+        newSquare= false;
     }
 
+}
+
+export const headPosition= () => {
+    return snake[0];
+}
+
+export const snakeIntersects= () => {
+return touchingSnake(snake[0], {ignoreHead: true});
 }

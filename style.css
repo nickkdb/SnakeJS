@@ -30,7 +30,7 @@ body {
     background-color: crimson;
     border: .25vmin solid white;
 }
-#settings {
+#settings, #leaderboards {
     text-align: center;
 }
 input {

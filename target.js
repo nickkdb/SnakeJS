@@ -31,3 +31,7 @@ function randomPosition() {
         y: Math.floor(Math.random() * 21) + 1
     }
 }
+
+export function resetTarget() {
+    target= setTarget();
+}

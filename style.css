@@ -3,15 +3,19 @@ body {
     display: flex;
     height: 100vh;
     width: 100vw;
-    align-items: center;
-    justify-content: center;
     background-color: lightgrey;
+}
+
+#outer-grid {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
 }
 
 #game-grid {
     display: grid;
-    height: 100vmin;
-    width: 100vmin;
+    height: 100%;
+    width: 100%;
     grid-template-columns: repeat(21, 1fr);
     grid-template-rows: repeat(21, 1fr);
     background-color: black;
@@ -25,4 +29,31 @@ body {
 .target {
     background-color: crimson;
     border: .25vmin solid white;
+}
+#settings {
+    text-align: center;
+}
+input {
+    width: 60%;
+}
+button {
+    margin-top: 10px;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+    height: 3rem;
+    width: 7rem;
+    font-size: large;
+}
+
+@media (min-width: 1025px) {
+    #outer-grid {
+        grid-template-columns: auto 50% auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    #outer-grid {
+        grid-template-rows: 25% 60% auto;
+    }
 }

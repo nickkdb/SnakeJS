@@ -27,3 +27,8 @@ export const readInput= () => {
 
     return direction;
 }
+
+export function resetInput() {
+    direction = {x: 0, y: 0};
+    lastDirection= {x:0, y: 0};
+}

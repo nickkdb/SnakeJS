@@ -1,11 +1,21 @@
 let lastRender= 0;
-import { SPEED, updateSnake, renderSnake, snakeIntersects, headPosition, getSnakeScore } from "./snake.js";
-import { renderTarget, updateTarget } from "./target.js";
+import { resetInput } from "./input.js";
+import { updateSnake, renderSnake, resetSnake, snakeIntersects, headPosition, getSnakeScore } from "./snake.js";
+import { renderTarget, updateTarget, resetTarget } from "./target.js";
 
 const board= document.getElementById('game-grid');
-let gameOver= false;
-let timedScore= 0;
+const startButton= document.getElementById('btn');
+const slider= document.getElementById('myRange');
 
+let gameOver;
+let timedScore;
+export let SPEED;
+
+startButton.addEventListener('click', function() {
+    console.log(slider.value);
+    SPEED= slider.value;
+    startGame();
+})
 
 const runGame= (timeStamp) => {
 
@@ -22,7 +32,12 @@ const runGame= (timeStamp) => {
     renderGame();
 }
 
-window.requestAnimationFrame(runGame);
+function startGame() {
+    timedScore= 0;
+    gameOver= false;
+    reset();
+    window.requestAnimationFrame(runGame);
+}
 
 const updateGame= () => {
     updateSnake();
@@ -44,4 +59,10 @@ function outsideGrid(position) {
     return (
         position.x < 1 || position.x > 21 || position.y < 1 || position.y > 21
     )
+}
+
+function reset() {
+    resetSnake();
+    resetTarget();
+    resetInput();
 }

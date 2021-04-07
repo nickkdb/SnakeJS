@@ -1,5 +1,6 @@
-export const SPEED = 11;
+// export const SPEED = 11;
 import { readInput } from './input.js';
+import { SPEED } from './game.js';
 
 let snake= [{x: 11, y: 11}];
 let newSquare= false;
@@ -46,7 +47,7 @@ const addSquares= () => {
     if (newSquare) {
         snake.push({...snake[snake.length - 1]});
         newSquare= false;
-        snakeScore += Math.floor(SPEED * snake.length / 2);
+        snakeScore += Math.floor((SPEED * snake.length) / 2);
     }
 }
 
@@ -60,4 +61,10 @@ return touchingSnake(snake[0], {ignoreHead: true});
 
 export const getSnakeScore = () => {
     return snakeScore;
+}
+
+export const resetSnake= () => {
+    snake= [{x: 11, y: 11}];
+    snakeScore= 0;
+    newSquare= false;
 }

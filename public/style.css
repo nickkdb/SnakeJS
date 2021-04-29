@@ -45,6 +45,9 @@ button {
     width: 7rem;
     font-size: large;
 }
+.scores {
+    text-align: center;
+}
 
 @media (min-width: 1025px) {
     #outer-grid {

@@ -3,13 +3,25 @@ import { resetInput } from "./input.js";
 import { updateSnake, renderSnake, resetSnake, snakeIntersects, headPosition, getSnakeScore } from "./snake.js";
 import { renderTarget, updateTarget, resetTarget } from "./target.js";
 
+const socket= io('localhost:3000');
 const board= document.getElementById('game-grid');
 const startButton= document.getElementById('btn');
 const slider= document.getElementById('myRange');
+const leaderboard= document.getElementById('leaderboards');
 
 let gameOver;
 let timedScore;
 export let SPEED;
+
+socket.on('highscores', data => {
+    console.log(data);
+    for (let item of data) {
+        const score= document.createElement('h2');
+        score.classList.add('scores');
+        score.innerHTML= `<strong>${item.name}: </strong> ${item.score}`;
+        leaderboard.appendChild(score);
+    }
+})
 
 startButton.addEventListener('click', function() {
     console.log(slider.value);
@@ -21,7 +33,14 @@ const runGame= (timeStamp) => {
 
     if (gameOver) {
         let finalScore= timedScore + getSnakeScore();
-        return alert(`Game over, final score: ${finalScore}`);
+        timedScore= 0;
+        let name= prompt(`Game over! Final score: ${finalScore}\n Enter name:`);
+        let data= {
+            name: name,
+            score: finalScore
+        }
+        socket.emit('score', data);
+        return console.log(data);
     }
     window.requestAnimationFrame(runGame);
     let timeToRender = (timeStamp - lastRender) / 1000;

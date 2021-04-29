@@ -1,26 +1,17 @@
-const mongojs= require('mongojs');
-
-const databaseUrl= "snakedb";
-const collections= ["scores"];
-
-const db= mongojs(databaseUrl, collections);
-db.on("error", error => {
-    console.log("Database Error:", error);
-  });
+const Score= require("../models/score");
 
 module.exports= {
     saveHighScore: (data) => {
-        db.scores.insert({
+        Score.create({
             name: data.name,
             score: data.score
         })
     },
     sendHighest: (cb) => {
-        db.scores.find().sort({"score": -1}).limit(5).toArray((err, data) => {
+        Score.find().sort({"score": -1}).limit(5).exec((err, data) => {
             if (err) {
                 throw err;
             } else cb(data);
-        });
-        
+        }); 
     }
 }

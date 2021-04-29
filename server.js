@@ -9,6 +9,15 @@ const {saveHighScore, sendHighest} = require("./controller/scoreController");
 
 const PORT= process.env.PORT || 3000;
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/snakedb",
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+}
+)
+
 
 app.use(express.static(path.join(__dirname, "public")));
 

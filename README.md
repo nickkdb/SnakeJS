@@ -1,6 +1,6 @@
  # Snake The Game!
 
-https://nickkdb.github.io/SnakeJS/
+https://playsnakejs.herokuapp.com/
     
 ## Table of Contents
 - [Description](#Description)

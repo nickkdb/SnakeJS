@@ -3,7 +3,7 @@ import { resetInput } from "./input.js";
 import { updateSnake, renderSnake, resetSnake, snakeIntersects, headPosition, getSnakeScore } from "./snake.js";
 import { renderTarget, updateTarget, resetTarget } from "./target.js";
 
-const socket= io('localhost:3000');
+const socket= io('https://playsnakejs.herokuapp.com/');
 const board= document.getElementById('game-grid');
 const startButton= document.getElementById('btn');
 const slider= document.getElementById('myRange');

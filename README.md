@@ -7,6 +7,8 @@ https://playsnakejs.herokuapp.com/
 - [Usage](#Usage)
 - [Questions](#Questions)
 
+<img src= "./utils/screenshot.png" alt= "screenshot">
+
 ## Description
 > This site recreates the classic game Snake, where you chase a target and each time you hit it, the body of the "snake" grows longer. This project was built using vanilla javascript, node, CSS, and HTML. MongoDB was integrated to control submission and viewing highscores via the leaderboards. 
 

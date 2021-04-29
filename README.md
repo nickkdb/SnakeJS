@@ -1,4 +1,4 @@
-# Snake The Game!
+ # Snake The Game!
 
 https://nickkdb.github.io/SnakeJS/
     
